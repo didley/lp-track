@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold text-gray-900;
+  }
+  h2 {
+    @apply text-3xl font-bold text-gray-900;
+  }
+  h3 {
+    @apply text-2xl text-gray-900;
+  }
+  h4 {
+    @apply text-xl text-gray-900;
+  }
+  h5 {
+    @apply text-lg text-gray-900;
+  }
+  h6 {
+    @apply text-base text-gray-900;
+  }
+  p {
+    @apply text-sm text-gray-900;
+  }
+  small {
+    @apply text-xs text-gray-900;
+  }
+  /* select {
+    @apply py-2 px-3 text-sm rounded-md border leading-tight text-gray-900;
+  } */
+  /* select:focus {
+    @apply outline-none border-blue-600 bg-white shadow-outline;
+  } */
+  textarea {
+    @apply py-2 px-3 text-xl sm:text-sm rounded-md border leading-tight text-gray-900;
+  }
+  /* textarea:focus {
+    @apply outline-none border-blue-600 bg-white shadow-outline;
+  } */
+  input {
+    @apply py-1 sm:py-2 px-3 text-xl sm:text-sm rounded-md border leading-tight text-gray-900;
+  }
+  /* input:focus {
+    @apply outline-none border-blue-600 bg-white shadow-outline;
+  }
+  button:focus {
+    @apply outline-none border border-blue-600 shadow-outline bg-opacity-100;
+  } */
+  /* label {
+    @apply block text-gray-800 text-sm;
+  } */
+}

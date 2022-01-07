@@ -1,6 +1,7 @@
 import { useReducer } from "react";
-import produce from "immer";
 import { ValueOf } from "../utils/types";
+
+import { clone } from "../utils/clone";
 
 type LpLogEntry = {
   lp: number[];
@@ -32,20 +33,22 @@ type ActonTypes = ValueOf<Actions>;
 const reducer = (state: State, action: ActonTypes) => {
   const { type, player } = action;
 
-  switch (type) {
-    case "increment":
-      return produce(state, (draft) => {
-        let latestLog = draft.lpLog.slice(-1)[0];
-        latestLog.lp[player] += 1;
-        draft.lpLog.push(latestLog);
-      });
+  const { lpLog } = state;
 
-    case "decrement":
-      return produce(state, (draft) => {
-        let latestLog = draft.lpLog.slice(-1)[0];
-        latestLog.lp[player] -= 1;
-        draft.lpLog.push(latestLog);
-      });
+  switch (type) {
+    case "increment": {
+      const _lpLog = clone(state.lpLog);
+      let lastLog = { ..._lpLog.slice(-1)[0] };
+      if (lastLog.lp[player] < 99) lastLog.lp[player] += 1;
+      return { ...state, lpLog: [...lpLog, lastLog] };
+    }
+
+    case "decrement": {
+      const _lpLog = clone(state.lpLog);
+      let lastLog = { ..._lpLog.slice(-1)[0] };
+      if (lastLog.lp[player] > 0) lastLog.lp[player] -= 1;
+      return { ...state, lpLog: [...lpLog, lastLog] };
+    }
 
     default:
       throw new Error(`Unhandled action type: ${type}`);
@@ -53,12 +56,7 @@ const reducer = (state: State, action: ActonTypes) => {
 };
 
 const initialState: State = {
-  lpLog: [
-    { lp: [20, 20] },
-    { lp: [20, 19] },
-    { lp: [20, 18] },
-    { lp: [19, 18] },
-  ],
+  lpLog: [{ lp: [20, 20] }],
 };
 
 export const useLPTracker = () => {

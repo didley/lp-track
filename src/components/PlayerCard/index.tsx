@@ -1,5 +1,5 @@
 import { Counters } from "./Counters";
-import { Actions } from "../../hooks/useLPTracker";
+import { ActionCreators } from "../../hooks/useLPTracker";
 
 type Colors = "red" | "blue";
 
@@ -9,7 +9,7 @@ type Props = {
   color: Colors;
   lifePoints: number | "surrender";
   counters?: number[];
-  lpActions: Actions;
+  lpActions: ActionCreators;
 };
 
 export const PlayerCard = ({
@@ -29,10 +29,13 @@ export const PlayerCard = ({
     <div className={bgColorClass[color]}>
       <h1 className="text-white my-1 py-1">{playerName}</h1>
       <div className="my-2 border-y flex justify-around relative">
-        <button className="absolute left-0 h-full w-1/2 opacity-0 bg-white hover:opacity-10 hover:bg-black active:opacity-30 active:bg-white" />
+        <button
+          onClick={() => lpActions.decrement(playerNumber)}
+          className="z-10 absolute left-0 h-full w-1/2 opacity-0 bg-white hover:opacity-10 hover:bg-black active:opacity-30 active:bg-white"
+        />
         <button
           onClick={() => lpActions.increment(playerNumber)}
-          className="absolute right-0 h-full w-1/2 opacity-0 bg-white hover:opacity-10 hover:bg-black active:opacity-30 active:bg-white"
+          className="z-10 absolute right-0 h-full w-1/2 opacity-0 bg-white hover:opacity-10 hover:bg-black active:opacity-30 active:bg-white"
         />
         <span className="text-black opacity-10 text-4xl place-self-center">
           {"-"}

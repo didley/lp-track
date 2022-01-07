@@ -1,51 +1,54 @@
 import { useReducer } from "react";
 import produce from "immer";
-
-type PlayerLp = number | "surrender";
-
-type PlayersLp = PlayerLp[];
+import { ValueOf } from "../utils/types";
 
 type LpLogEntry = {
-  lp: PlayersLp;
-  change?: PlayersLp;
+  lp: number[];
+  change?: number[];
+  surrender?: boolean[];
 };
 
 type State = {
   lpLog: LpLogEntry[];
 };
 
-type Action = {
-  type: string;
-  player: number;
-};
-
-export type Selectors = {
+type Selectors = {
   lpLog: LpLogEntry[];
-  latestLp: PlayersLp;
+  latestLp: number[];
 };
 
-export type Actions = {
+type Actions = {
+  increment: { type: "increment"; player: number };
+  decrement: { type: "decrement"; player: number };
+};
+
+export type ActionCreators = {
   increment: (player: number) => void;
+  decrement: (player: number) => void;
 };
 
-const reducer = (state: State, action: Action) => {
+type ActonTypes = ValueOf<Actions>;
+
+const reducer = (state: State, action: ActonTypes) => {
   const { type, player } = action;
 
   switch (type) {
     case "increment":
       return produce(state, (draft) => {
-        let lastLog = state.lpLog?.at(-1) ?? { lp: [0, 0] };
-        const changingPlayerLp = (lastLog && lastLog?.lp[player]) ?? 0;
-        const newLp: PlayerLp =
-          changingPlayerLp === "surrender" ? "surrender" : changingPlayerLp + 1;
+        let latestLog = draft.lpLog.slice(-1)[0];
+        latestLog.lp[player] += 1;
+        draft.lpLog.push(latestLog);
+      });
 
-        lastLog.lp[player] = newLp;
-
-        draft.lpLog.push(lastLog);
+    case "decrement":
+      return produce(state, (draft) => {
+        let latestLog = draft.lpLog.slice(-1)[0];
+        latestLog.lp[player] += 1;
+        draft.lpLog.push(latestLog);
       });
 
     default:
-      throw new Error();
+      throw new Error(`Unhandled action type: ${type}`);
   }
 };
 
@@ -58,21 +61,21 @@ const initialState: State = {
   ],
 };
 
-export const useLPTracker = (): [Selectors, Actions] => {
+export const useLPTracker = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { lpLog } = state;
 
-  const actions: Actions = {
+  const actions = {
     increment: (player: number) => dispatch({ type: "increment", player }),
-    // decrement: (player: number) => dispatch({ type: "decrement", player }),
+    decrement: (player: number) => dispatch({ type: "decrement", player }),
     // change: (player: number) => dispatch({ type: "change", player }),
     // surrender: (player: number) => dispatch({ type: "surrender", player }),
   };
 
   const selectors: Selectors = {
     lpLog,
-    latestLp: lpLog.at(-1)?.lp ?? [0, 0],
+    latestLp: lpLog?.slice(-1)[0]?.lp ?? [0, 0],
   };
 
-  return [selectors, actions];
+  return [selectors, actions] as const;
 };

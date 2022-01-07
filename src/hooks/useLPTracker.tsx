@@ -43,7 +43,7 @@ const reducer = (state: State, action: ActonTypes) => {
     case "decrement":
       return produce(state, (draft) => {
         let latestLog = draft.lpLog.slice(-1)[0];
-        latestLog.lp[player] += 1;
+        latestLog.lp[player] -= 1;
         draft.lpLog.push(latestLog);
       });
 

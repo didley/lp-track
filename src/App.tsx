@@ -18,7 +18,7 @@ function App() {
       <TitleBar gameName="YGO" format="Seed Duel" />
       <PlayerCard
         playerName={"steve p1"}
-        playerNumber={1}
+        playerNumber={0}
         color={"blue"}
         lifePoints={lpSelectors.latestLp[0]}
         lpActions={lpActions}

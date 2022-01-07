@@ -13,8 +13,8 @@ export const Counters = ({ counters }: Props) => {
               key={i}
               className="text-5xl text-white border-y odd:border-r even:border-l flex justify-around relative"
             >
-              <button className="absolute left-0 h-full w-1/2 opacity-0 bg-white hover:opacity-10 hover:bg-black active:opacity-30 active:bg-white" />
-              <button className="absolute right-0 h-full w-1/2 opacity-0 bg-white hover:opacity-10 hover:bg-black active:opacity-30 active:bg-white" />
+              <button className="absolute left-0 h-full w-1/2 opacity-0 bg-white active:opacity-30 active:bg-white" />
+              <button className="absolute right-0 h-full w-1/2 opacity-0 bg-white active:opacity-30 active:bg-white" />
 
               <span className="text-black opacity-10 text-4xl place-self-center">
                 {"-"}

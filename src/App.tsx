@@ -1,28 +1,34 @@
 import { TitleBar } from "./components/TitleBar";
 import { PlayerCard } from "./components/PlayerCard";
 import { useLPTracker } from "./hooks/useLPTracker";
+import { useCounters } from "./hooks/useCounters";
+import { Player } from "types";
 
 function App() {
   const [lpSelectors, lpActions] = useLPTracker();
+  const [counters, counterActions] = useCounters();
+
+  const players: Player[] = [
+    { name: "Jack p1", number: 0, color: "red" },
+    { name: "Jill p2", number: 1, color: "blue" },
+  ];
 
   return (
     <div className="h-screen w-screen grid select-none">
       <PlayerCard
-        playerName={"greg p2"}
-        playerNumber={1}
-        color={"red"}
-        lifePoints={lpSelectors.latestLp[1]}
+        player={players[1]}
+        lastLpLog={lpSelectors.lastLog}
         lpActions={lpActions}
-        counters={[9, 5, 0]}
+        counters={counters[1]}
+        counterActions={counterActions}
       />
       <TitleBar gameName="YGO" format="Seed Duel" />
       <PlayerCard
-        playerName={"steve p1"}
-        playerNumber={0}
-        color={"blue"}
-        lifePoints={lpSelectors.latestLp[0]}
+        player={players[0]}
+        lastLpLog={lpSelectors.lastLog}
         lpActions={lpActions}
-        counters={[]}
+        counters={counters[0]}
+        counterActions={counterActions}
       />
     </div>
   );

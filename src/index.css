@@ -42,9 +42,9 @@
   input {
     @apply py-1 sm:py-2 px-3 text-xl sm:text-sm rounded-md border leading-tight text-gray-900;
   }
-  button {
+  /* button {
     @apply touch-manipulation;
-  }
+  } */
   /* input:focus {
     @apply outline-none border-blue-600 bg-white shadow-outline;
   }

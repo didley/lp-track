@@ -2,12 +2,7 @@ import { useReducer } from "react";
 import { ValueOf } from "../utils/types";
 
 import { clone } from "../utils/clone";
-
-type LpLogEntry = {
-  lp: number[];
-  change?: number[];
-  surrender?: boolean[];
-};
+import { LpLogEntry } from "types";
 
 type State = {
   lpLog: LpLogEntry[];
@@ -15,7 +10,7 @@ type State = {
 
 type Selectors = {
   lpLog: LpLogEntry[];
-  latestLp: number[];
+  lastLog: LpLogEntry;
 };
 
 type Actions = {
@@ -23,7 +18,7 @@ type Actions = {
   decrement: { type: "decrement"; player: number };
 };
 
-export type ActionCreators = {
+export type LpTrackerActions = {
   increment: (player: number) => void;
   decrement: (player: number) => void;
 };
@@ -63,16 +58,16 @@ export const useLPTracker = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { lpLog } = state;
 
-  const actions = {
-    increment: (player: number) => dispatch({ type: "increment", player }),
-    decrement: (player: number) => dispatch({ type: "decrement", player }),
+  const actions: LpTrackerActions = {
+    increment: (player) => dispatch({ type: "increment", player }),
+    decrement: (player) => dispatch({ type: "decrement", player }),
     // change: (player: number) => dispatch({ type: "change", player }),
     // surrender: (player: number) => dispatch({ type: "surrender", player }),
   };
 
   const selectors: Selectors = {
     lpLog,
-    latestLp: lpLog?.slice(-1)[0]?.lp ?? [0, 0],
+    lastLog: lpLog?.slice(-1)[0] ?? { lp: [0, 0] },
   };
 
   return [selectors, actions] as const;

@@ -3,6 +3,7 @@ export type Player = {
   color: PlayerColor;
   cardRotation: 0 | 1 | 2 | 3;
   counters: number[];
+  lp: number;
 };
 
 type PlayerColor = "red" | "blue";
@@ -15,5 +16,5 @@ export type LpLogEntry = {
 
 export type Tracker = {
   players: Player[];
-  lpLpg: LpLogEntry[];
+  lpLog: LpLogEntry[];
 };

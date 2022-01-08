@@ -2,7 +2,7 @@ import { useTracker } from "hooks/useTracker";
 // import { Counters } from "./Counters";
 import { Player, LpLogEntry } from "types";
 
-type Props = { initPlayer: Player; playerIndex: number; initLog: LpLogEntry[] };
+type Props = { playerIndex: number };
 
 export const PlayerCard = ({ initPlayer }: Props) => {
   const [selectors, actions] = useTracker(initPlayer);

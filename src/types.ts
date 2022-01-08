@@ -1,13 +1,19 @@
-type PlayerColor = "red" | "blue";
-
 export type Player = {
   name: string;
-  number: number;
   color: PlayerColor;
+  cardRotation: 0 | 1 | 2 | 3;
+  counters: number[];
 };
 
+type PlayerColor = "red" | "blue";
+
 export type LpLogEntry = {
-  lp: number[];
-  change?: number[];
-  surrender?: boolean[];
+  lp: number;
+  change?: number;
+  surrender?: boolean;
+}[];
+
+export type Tracker = {
+  players: Player[];
+  lpLpg: LpLogEntry[];
 };

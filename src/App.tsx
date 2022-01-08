@@ -1,35 +1,34 @@
 import { TitleBar } from "./components/TitleBar";
 import { PlayerCard } from "./components/PlayerCard";
-import { useLPTracker } from "./hooks/useLPTracker";
-import { useCounters } from "./hooks/useCounters";
-import { Player } from "types";
+import { Player, LpLogEntry } from "types";
 
 function App() {
-  const [lpSelectors, lpActions] = useLPTracker();
-  const [counters, counterActions] = useCounters();
-
   const players: Player[] = [
-    { name: "Jack p1", number: 0, color: "red" },
-    { name: "Jill p2", number: 1, color: "blue" },
+    {
+      name: "Blue",
+      color: "red",
+      cardRotation: 0,
+      counters: [2, 4, 0, 0],
+    },
+    {
+      name: "Jill",
+      color: "blue",
+      cardRotation: 0,
+      counters: [2, 4, 0, 0],
+    },
+  ];
+
+  const initLog: LpLogEntry[] = [
+    [{ lp: 4000 }, { lp: 4000 }],
+    [{ lp: 3900, change: -100 }, { lp: 4000 }],
+    [{ lp: 3900, surrender: true }, { lp: 4000 }],
   ];
 
   return (
     <div className="h-screen w-screen grid select-none">
-      <PlayerCard
-        player={players[1]}
-        lastLpLog={lpSelectors.lastLog}
-        lpActions={lpActions}
-        counters={counters[1]}
-        counterActions={counterActions}
-      />
+      <PlayerCard initPlayer={players[1]} playerIndex={1} initLog={initLog} />
       <TitleBar gameName="YGO" format="Seed Duel" />
-      <PlayerCard
-        player={players[0]}
-        lastLpLog={lpSelectors.lastLog}
-        lpActions={lpActions}
-        counters={counters[0]}
-        counterActions={counterActions}
-      />
+      <PlayerCard initPlayer={players[0]} playerIndex={0} initLog={initLog} />
     </div>
   );
 }

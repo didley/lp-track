@@ -1,19 +1,19 @@
-import { ActionCreators } from "../../hooks/useCounters";
+// import { Actions } from "hooks/useTracker.types";
 
 type Props = {
   counters?: number[];
-  actions: ActionCreators;
-  player: number;
+  // actions: Actions;
 };
 
-export const Counters = ({ counters = [], actions, player }: Props) => {
-  const handleMinus = (player: number, index: number) => {
-    actions.decrement(player, index);
-  };
+export const Counters = ({ counters = [] }: Props) => {
+  // const handleMinus = (player: number, index: number) => {
+  //   actions.decrement(player, index);
+  // };
 
   return (
     <>
-      <label className="text-white text-left font-bold">Counters</label>
+      <div>{counters}</div>
+      {/* <label className="text-white text-left font-bold">Counters</label>
       <ul className="grid grid-cols-2 my-1 gap-2">
         {counters &&
           counters.map((counter, i) => (
@@ -46,7 +46,7 @@ export const Counters = ({ counters = [], actions, player }: Props) => {
         >
           Add counter
         </button>
-      </ul>
+      </ul> */}
     </>
   );
 };

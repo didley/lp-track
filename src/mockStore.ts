@@ -1,6 +1,6 @@
-import { Tracker } from "types";
+import { GlobalState } from "app/state/types";
 
-export const initStore: Tracker = {
+export const initStore: GlobalState = {
   players: [
     {
       name: "Blue",

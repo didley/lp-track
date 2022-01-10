@@ -21,17 +21,10 @@ export type GlobalState =
     }
   | undefined;
 
-// type ActionType =
-//   | "lp/increment"
-//   | "lp/decrement"
-//   | "counter/increment"
-//   | "counter/decrement"
-//   | "counter/add"
-//   | "counter/remove";
-
-// export type Action = {
-//   type: ActionType;
-//   playerIndex?: number;
-// };
-
-export type Action = { type: "lp/increment"; playerIndex: number };
+export type Action =
+  | { type: "lp/increment"; playerIndex: number }
+  | { type: "lp/decrement"; playerIndex: number }
+  | { type: "counter/increment"; playerIndex: number; counterIndex: number }
+  | { type: "counter/decrement"; playerIndex: number; counterIndex: number }
+  | { type: "counter/add"; playerIndex: number; counterIndex: number }
+  | { type: "counter/remove"; playerIndex: number; counterIndex: number };

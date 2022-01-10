@@ -14,12 +14,10 @@ export type LpLogEntry = {
   surrender?: boolean;
 }[];
 
-export type GlobalState =
-  | {
-      players: Player[];
-      lpLog: LpLogEntry[];
-    }
-  | undefined;
+export type GlobalState = {
+  players: Player[];
+  lpLog: LpLogEntry[];
+};
 
 export type Action =
   | { type: "lp/increment"; playerIndex: number }

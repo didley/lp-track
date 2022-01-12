@@ -14,9 +14,20 @@ export type LpLogEntry = {
   surrender?: boolean;
 }[];
 
+type gameOpts = {
+  name: string;
+  format?: string;
+  lifePoints: {
+    default: number;
+    changeType: "step" | "numpad";
+  };
+  surrenderAvailable: boolean;
+};
+
 export type GlobalState = {
   players: Player[];
   lpLog: LpLogEntry[];
+  gameOpts: gameOpts;
 };
 
 export type Action =
@@ -25,4 +36,5 @@ export type Action =
   | { type: "counter/increment"; playerIndex: number; counterIndex: number }
   | { type: "counter/decrement"; playerIndex: number; counterIndex: number }
   | { type: "counter/add"; playerIndex: number }
-  | { type: "counter/remove"; playerIndex: number; counterIndex: number };
+  | { type: "counter/remove"; playerIndex: number; counterIndex: number }
+  | { type: "game/reset" };

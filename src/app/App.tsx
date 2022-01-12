@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="h-screen w-screen grid select-none">
       <PlayerCard playerIndex={1} />
-      <TitleBar gameName="YGO" format="Seed Duel" />
+      <TitleBar />
       <PlayerCard playerIndex={0} />
     </div>
   );

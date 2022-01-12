@@ -1,7 +1,6 @@
-// import { Counters } from "./Counters";
-
 import { useGlobalCtx } from "app/state/context";
 import { select } from "app/state/selectors";
+import { Counters } from "./Counters";
 
 type Props = { playerIndex: number };
 
@@ -30,16 +29,12 @@ export const PlayerCard = ({ playerIndex }: Props) => {
         <span className="text-black opacity-10 text-4xl place-self-center">
           {"-"}
         </span>
-        <h2 className="text-7xl text-white my-2 py-1 relative">{player?.lp}</h2>
+        <h2 className="text-7xl text-white my-2 py-1 relative">{player.lp}</h2>
         <span className="text-black opacity-10 text-4xl place-self-center">
           {"+"}
         </span>
       </div>
-      {/* <Counters
-        counters={counters}
-        actions={counterActions}
-        player={player.number}
-      /> */}
+      <Counters playerIndex={playerIndex} />
     </div>
   );
 };

@@ -10,12 +10,6 @@ const GlobalCtxDispatch = createContext<React.Dispatch<Action> | undefined>(
 
 export const GlobalProvider = ({ children }: { children: React.ReactNode }) => {
   const [state, dispatch] = useReducer(reducers, initStore);
-
-  //   const selectors = {
-  //     ...state,
-  //     lastLog: state.lpLog?.slice(-1)[0] ?? { lp: [0, 0] },
-  //   };
-
   return (
     <GlobalCtxState.Provider value={state}>
       <GlobalCtxDispatch.Provider value={dispatch}>

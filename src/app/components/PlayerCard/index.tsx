@@ -1,6 +1,7 @@
 import { useGlobalCtx } from "app/state/context";
 import { select } from "app/state/selectors";
 import { Counters } from "./Counters";
+import { MinusIconSolid, PlusIconSolid } from "app/utils/icons";
 
 type Props = { playerIndex: number };
 
@@ -26,13 +27,15 @@ export const PlayerCard = ({ playerIndex }: Props) => {
           onClick={() => dispatch({ type: "lp/increment", playerIndex })}
           className="z-10 absolute right-0 h-full w-1/2 active:opacity-30 active:bg-white"
         />
-        <span className="text-black opacity-10 text-4xl place-self-center">
-          {"-"}
-        </span>
-        <h2 className="text-7xl text-white my-2 py-1 relative">{player.lp}</h2>
-        <span className="text-black opacity-10 text-4xl place-self-center">
-          {"+"}
-        </span>
+        <div className="w-full grid grid-cols-4 relative">
+          <span className="text-black opacity-20 text-4xl place-self-center">
+            <MinusIconSolid />
+          </span>
+          <h2 className="text-7xl text-white col-span-2">{player.lp}</h2>
+          <span className="text-black opacity-20 text-4xl place-self-center">
+            {<PlusIconSolid />}
+          </span>
+        </div>
       </div>
       <Counters playerIndex={playerIndex} />
     </div>

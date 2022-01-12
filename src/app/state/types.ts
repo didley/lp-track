@@ -24,5 +24,5 @@ export type Action =
   | { type: "lp/decrement"; playerIndex: number }
   | { type: "counter/increment"; playerIndex: number; counterIndex: number }
   | { type: "counter/decrement"; playerIndex: number; counterIndex: number }
-  | { type: "counter/add"; playerIndex: number; counterIndex: number }
+  | { type: "counter/add"; playerIndex: number }
   | { type: "counter/remove"; playerIndex: number; counterIndex: number };

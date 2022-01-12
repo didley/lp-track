@@ -36,8 +36,24 @@ export const reducers = (state: GlobalState, action: Action) => {
         if (draftState) {
           const playerCounter =
             draftState?.players[playerIndex].counters[action.counterIndex];
-          if (playerCounter > 0)
+          if (playerCounter === 0) {
+            // removes counter
+            draftState.players[playerIndex].counters.splice(
+              action.counterIndex,
+              1
+            );
+          } else if (playerCounter > 0) {
             draftState.players[playerIndex].counters[action.counterIndex] -= 1;
+          }
+        }
+      });
+    }
+    case "counter/add": {
+      return produce(state, (draftState) => {
+        if (draftState) {
+          const playerCounters = draftState?.players[playerIndex].counters;
+          if (playerCounters.length < 4)
+            draftState.players[playerIndex].counters.push(0);
         }
       });
     }

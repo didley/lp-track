@@ -73,6 +73,17 @@ export const reducers = (state: GlobalState, action: Action) => {
         });
       });
     }
+    case "player/rotate": {
+      return produce(state, (draftState) => {
+        const { playerIndex } = action;
+        const cardRotation = draftState.players[playerIndex].cardRotation;
+
+        if (cardRotation === 0)
+          draftState.players[playerIndex].cardRotation = 180;
+        else if (cardRotation === 180)
+          draftState.players[playerIndex].cardRotation = 0;
+      });
+    }
 
     default:
       throw new Error(`Unhandled action type: ${type}`);

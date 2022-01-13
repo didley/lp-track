@@ -1,7 +1,7 @@
 export type Player = {
   name: string;
   color: PlayerColor;
-  cardRotation: 0 | 1 | 2 | 3;
+  cardRotation: 0 | 90 | 180 | 270;
   counters: number[];
   lp: number;
 };
@@ -37,4 +37,5 @@ export type Action =
   | { type: "counter/decrement"; playerIndex: number; counterIndex: number }
   | { type: "counter/add"; playerIndex: number }
   | { type: "counter/remove"; playerIndex: number; counterIndex: number }
-  | { type: "game/reset" };
+  | { type: "game/reset" }
+  | { type: "player/rotate"; playerIndex: number };

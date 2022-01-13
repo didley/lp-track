@@ -3,9 +3,9 @@ import { PlayerCard } from "./components/PlayerCard";
 
 function App() {
   return (
-    <div className="h-screen w-screen grid select-none">
+    <div className="h-screen w-screen grid select-none bg-black">
       <PlayerCard playerIndex={1} />
-      <TitleBar gameName="YGO" format="Seed Duel" />
+      <TitleBar />
       <PlayerCard playerIndex={0} />
     </div>
   );

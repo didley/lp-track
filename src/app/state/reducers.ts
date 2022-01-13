@@ -2,12 +2,13 @@ import { Action, GlobalState } from "./types";
 import produce from "immer";
 
 export const reducers = (state: GlobalState, action: Action) => {
-  const { type, playerIndex } = action;
+  const { type } = action;
 
   switch (type) {
     case "lp/increment": {
       return produce(state, (draftState) => {
         if (draftState) {
+          const { playerIndex } = action;
           const playerLp = draftState?.players[playerIndex].lp;
           if (playerLp < 99) draftState.players[playerIndex].lp += 1;
         }
@@ -16,6 +17,8 @@ export const reducers = (state: GlobalState, action: Action) => {
     case "lp/decrement": {
       return produce(state, (draftState) => {
         if (draftState) {
+          const { playerIndex } = action;
+
           const playerLp = draftState?.players[playerIndex].lp;
           if (playerLp > 0) draftState.players[playerIndex].lp -= 1;
         }
@@ -24,6 +27,7 @@ export const reducers = (state: GlobalState, action: Action) => {
     case "counter/increment": {
       return produce(state, (draftState) => {
         if (draftState) {
+          const { playerIndex } = action;
           const playerCounter =
             draftState?.players[playerIndex].counters[action.counterIndex];
           if (playerCounter < 9)
@@ -34,6 +38,7 @@ export const reducers = (state: GlobalState, action: Action) => {
     case "counter/decrement": {
       return produce(state, (draftState) => {
         if (draftState) {
+          const { playerIndex } = action;
           const playerCounter =
             draftState?.players[playerIndex].counters[action.counterIndex];
           if (playerCounter === 0) {
@@ -50,11 +55,33 @@ export const reducers = (state: GlobalState, action: Action) => {
     }
     case "counter/add": {
       return produce(state, (draftState) => {
+        const { playerIndex } = action;
+
         if (draftState) {
           const playerCounters = draftState?.players[playerIndex].counters;
           if (playerCounters.length < 4)
             draftState.players[playerIndex].counters.push(0);
         }
+      });
+    }
+    case "game/reset": {
+      return produce(state, (draftState) => {
+        const defaultLp = draftState.gameOpts.lifePoints.default;
+        draftState.players.map((player) => {
+          player.lp = defaultLp;
+          return (player.counters = [0]);
+        });
+      });
+    }
+    case "player/rotate": {
+      return produce(state, (draftState) => {
+        const { playerIndex } = action;
+        const cardRotation = draftState.players[playerIndex].cardRotation;
+
+        if (cardRotation === 0)
+          draftState.players[playerIndex].cardRotation = 180;
+        else if (cardRotation === 180)
+          draftState.players[playerIndex].cardRotation = 0;
       });
     }
 

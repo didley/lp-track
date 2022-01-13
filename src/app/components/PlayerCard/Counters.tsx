@@ -1,6 +1,6 @@
 import { useGlobalCtx } from "app/state/context";
 import { select } from "app/state/selectors";
-import { MinusIcon, PlusIcon, DelIcon } from "app/utils/icons";
+import { MinusIcon, PlusIcon, DelIcon } from "app/components/icons";
 
 type Props = {
   playerIndex: number;

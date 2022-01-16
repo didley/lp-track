@@ -6,7 +6,8 @@ export const GameModes = ({ className = "" }) => {
   const { gameConfigs, trackerOpts } = state;
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const [gameName, formatName] = e.target.value.split(",,");
+    const gameConfigKey = e.target.value;
+    const [gameName, formatName] = gameConfigKey.split(",,");
     const selectedGame =
       gameConfigs?.find((g) => g.gameName === gameName) ?? gameConfigs[0];
     const selectedFormat =
@@ -14,6 +15,7 @@ export const GameModes = ({ className = "" }) => {
       selectedGame.formats[0];
 
     const trackerOpts = {
+      gameConfigKey,
       gameName: selectedGame.shortName
         ? selectedGame.shortName
         : selectedGame.gameName,
@@ -32,7 +34,7 @@ export const GameModes = ({ className = "" }) => {
 
   return (
     <select
-      value={`${trackerOpts.gameName},,${trackerOpts.formatName}`}
+      value={trackerOpts.gameConfigKey}
       onChange={handleChange}
       className={className}
     >

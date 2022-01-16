@@ -26,6 +26,7 @@ export type GameConfig = {
 };
 
 export type TrackerOpts = {
+  gameConfigKey: string;
   gameName: string;
   formatName: string;
   surrenderAvailable: boolean;

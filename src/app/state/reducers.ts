@@ -69,7 +69,8 @@ export const reducers = (state: GlobalState, action: Action) => {
         const defaultLp = draftState.trackerOpts.defaultLp;
         draftState.players.map((player) => {
           player.lp = defaultLp;
-          return (player.counters = [0]);
+          player.counters = [0];
+          return null;
         });
       });
     }

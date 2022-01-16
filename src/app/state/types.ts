@@ -14,20 +14,38 @@ export type LpLogEntry = {
   surrender?: boolean;
 }[];
 
-type gameOpts = {
-  name: string;
-  format?: string;
-  lifePoints: {
-    default: number;
-    changeType: "step" | "numpad";
-  };
+export type GameConfig = {
+  gameName: string;
+  shortName?: string;
   surrenderAvailable: boolean;
+  lpChangeType: "step" | "numpad";
+  formats: {
+    formatName: string;
+    defaultLp: number;
+  }[];
+};
+
+export type TrackerOpts = {
+  gameConfigKey: string;
+  gameName: string;
+  formatName: string;
+  surrenderAvailable: boolean;
+  lpChangeType: "step" | "numpad";
+  defaultLp: number;
+};
+
+type TitleBar = {
+  menuOpen: boolean;
+  settingsOpen: boolean;
+  infoOpen: boolean;
 };
 
 export type GlobalState = {
+  trackerOpts: TrackerOpts;
   players: Player[];
   lpLog: LpLogEntry[];
-  gameOpts: gameOpts;
+  gameConfigs: GameConfig[];
+  titleBar: TitleBar;
 };
 
 export type Action =
@@ -38,4 +56,9 @@ export type Action =
   | { type: "counter/add"; playerIndex: number }
   | { type: "counter/remove"; playerIndex: number; counterIndex: number }
   | { type: "game/reset" }
-  | { type: "player/rotate"; playerIndex: number };
+  | { type: "game/setTrackerOpts"; trackerOpts: TrackerOpts }
+  | { type: "player/rotate"; playerIndex: number }
+  | { type: "menu/close" }
+  | { type: "menu/open" }
+  | { type: "menu/settingsOpen" }
+  | { type: "menu/infoOpen" };

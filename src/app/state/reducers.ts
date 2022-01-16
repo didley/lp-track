@@ -66,11 +66,18 @@ export const reducers = (state: GlobalState, action: Action) => {
     }
     case "game/reset": {
       return produce(state, (draftState) => {
-        const defaultLp = draftState.gameOpts.lifePoints.default;
+        const defaultLp = draftState.trackerOpts.defaultLp;
         draftState.players.map((player) => {
           player.lp = defaultLp;
-          return (player.counters = [0]);
+          player.counters = [0];
+          return null;
         });
+      });
+    }
+    case "game/setTrackerOpts": {
+      const { trackerOpts } = action;
+      return produce(state, (draftState) => {
+        draftState.trackerOpts = trackerOpts;
       });
     }
     case "player/rotate": {
@@ -84,6 +91,30 @@ export const reducers = (state: GlobalState, action: Action) => {
           draftState.players[playerIndex].cardRotation = 0;
       });
     }
+    case "menu/close":
+      return {
+        ...state,
+        titleBar: {
+          menuOpen: false,
+          settingsOpen: false,
+          infoOpen: false,
+        },
+      };
+    case "menu/open":
+      return {
+        ...state,
+        titleBar: { menuOpen: true, settingsOpen: false, infoOpen: false },
+      };
+    case "menu/settingsOpen":
+      return {
+        ...state,
+        titleBar: { menuOpen: true, settingsOpen: true, infoOpen: false },
+      };
+    case "menu/infoOpen":
+      return {
+        ...state,
+        titleBar: { menuOpen: true, settingsOpen: false, infoOpen: true },
+      };
 
     default:
       throw new Error(`Unhandled action type: ${type}`);

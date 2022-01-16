@@ -5,8 +5,9 @@ import { ChevronDownIcon } from "../icons";
 export const TitleBar = () => {
   const [state, dispatch] = useGlobalCtx();
   const { trackerOpts, players, titleBar } = state;
+  const { gameName, formatName, defaultLp } = trackerOpts;
 
-  let title = trackerOpts.gameName;
+  let title = `${gameName} | ${formatName} ${defaultLp}lp`;
 
   if (players[0].lp === 0) title = `${players[1].name} wins!`;
   if (players[1].lp === 0) title = `${players[0].name} wins!`;

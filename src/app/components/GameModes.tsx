@@ -14,7 +14,9 @@ export const GameModes = ({ className = "" }) => {
       selectedGame.formats[0];
 
     const trackerOpts = {
-      gameName: selectedGame.gameName,
+      gameName: selectedGame.shortName
+        ? selectedGame.shortName
+        : selectedGame.gameName,
       formatName: selectedFormat.formatName,
       surrenderAvailable: selectedGame?.surrenderAvailable,
       lpChangeType: selectedGame.lpChangeType,

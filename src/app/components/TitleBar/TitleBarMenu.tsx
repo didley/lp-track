@@ -24,22 +24,14 @@ export const TitleBarMenu = ({ titleBarDispatch }: Props) => {
       </button>
 
       {settingsVisible && (
-        <div className="w-screen h-screen z-10 absolute inset-0">
+        <div className="w-screen h-screen z-10 absolute inset-0 text-gray-900">
           <div className="absolute text-left p-4 left-0 right-0 ml-auto mr-auto mt-auto mb-auto inset-0 w-72 z-20 bg-white shadow-lg max-h-56 rounded-2xl text-base overflow-auto sm:text-sm">
-            <div>
-              <h6>Game</h6>
-            </div>
+            <h6>Game</h6>
 
             <GameModes
               className="p-2 text-gray-900 bg-gray-50 rounded-lg w-full border"
               titleBarDispatch={titleBarDispatch}
             />
-
-            <div>surrenderAvailable: boolean;</div>
-
-            <div>lpChangeType: "step" | "numpad";</div>
-
-            <div>defaultLp: number;</div>
           </div>
           <div
             className="absolute inset-0 bottom-0 top-0 z-10"

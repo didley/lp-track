@@ -69,4 +69,9 @@ export const initStore: GlobalState = {
     lpChangeType: "step",
     defaultLp: 20,
   },
+  titleBar: {
+    menuOpen: false,
+    settingsOpen: false,
+    infoOpen: false,
+  },
 };

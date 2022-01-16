@@ -33,11 +33,18 @@ export type TrackerOpts = {
   defaultLp: number;
 };
 
+type TitleBar = {
+  menuOpen: boolean;
+  settingsOpen: boolean;
+  infoOpen: boolean;
+};
+
 export type GlobalState = {
   trackerOpts: TrackerOpts;
   players: Player[];
   lpLog: LpLogEntry[];
   gameConfigs: GameConfig[];
+  titleBar: TitleBar;
 };
 
 export type Action =
@@ -49,4 +56,8 @@ export type Action =
   | { type: "counter/remove"; playerIndex: number; counterIndex: number }
   | { type: "game/reset" }
   | { type: "game/setTrackerOpts"; trackerOpts: TrackerOpts }
-  | { type: "player/rotate"; playerIndex: number };
+  | { type: "player/rotate"; playerIndex: number }
+  | { type: "menu/close" }
+  | { type: "menu/open" }
+  | { type: "menu/settingsOpen" }
+  | { type: "menu/infoOpen" };

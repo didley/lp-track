@@ -1,40 +1,10 @@
 import { TitleBarMenu } from "./TitleBarMenu";
 import { useGlobalCtx } from "app/state/context";
-import { useReducer } from "react";
 import { ChevronDownIcon } from "../icons";
-
-const initialState = {
-  menuOpen: false,
-  settingsOpen: false,
-  infoOpen: false,
-};
-
-export type Action =
-  | { type: "menu/close" }
-  | { type: "menu/open" }
-  | { type: "menu/settingsOpen" }
-  | { type: "menu/infoOpen" };
-
-const titleBarReducer = (state: typeof initialState, action: Action) => {
-  switch (action.type) {
-    case "menu/close":
-      return { ...state, ...initialState };
-    case "menu/open":
-      return { ...state, menuOpen: true, settingsOpen: false, infoOpen: false };
-    case "menu/settingsOpen":
-      return { ...state, menuOpen: true, settingsOpen: true, infoOpen: false };
-    case "menu/infoOpen":
-      return { ...state, menuOpen: true, settingsOpen: false, infoOpen: true };
-  }
-};
 
 export const TitleBar = () => {
   const [state, dispatch] = useGlobalCtx();
-  const { trackerOpts, players } = state;
-  const [titleBarState, titleBarDispatch] = useReducer(
-    titleBarReducer,
-    initialState
-  );
+  const { trackerOpts, players, titleBar } = state;
 
   let title = trackerOpts.gameName;
 
@@ -44,8 +14,8 @@ export const TitleBar = () => {
 
   return (
     <div className="bg-black text-white flex w-full text-center items-center justify-between">
-      {titleBarState.menuOpen ? (
-        <TitleBarMenu titleBarDispatch={titleBarDispatch} />
+      {titleBar.menuOpen ? (
+        <TitleBarMenu />
       ) : (
         <>
           <div className="w-20 grid">
@@ -59,7 +29,7 @@ export const TitleBar = () => {
           </div>
           <button
             className="w-20 flex items-center"
-            onClick={() => titleBarDispatch({ type: "menu/open" })}
+            onClick={() => dispatch({ type: "menu/open" })}
           >
             <ChevronDownIcon className="w-4 h-4" />
             Menu

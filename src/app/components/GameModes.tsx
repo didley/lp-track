@@ -1,12 +1,7 @@
 import { useGlobalCtx } from "app/state/context";
 import React from "react";
-import { Action } from "./TitleBar/index";
 
-type Props = {
-  className: string;
-  titleBarDispatch: React.Dispatch<Action>;
-};
-export const GameModes = ({ className = "", titleBarDispatch }: Props) => {
+export const GameModes = ({ className = "" }) => {
   const [state, dispatch] = useGlobalCtx();
   const { gameConfigs, trackerOpts } = state;
 
@@ -29,7 +24,7 @@ export const GameModes = ({ className = "", titleBarDispatch }: Props) => {
     if (selectedGame && selectedFormat) {
       dispatch({ type: "game/setTrackerOpts", trackerOpts });
       dispatch({ type: "game/reset" });
-      titleBarDispatch({ type: "menu/close" });
+      dispatch({ type: "menu/close" });
     }
   };
 

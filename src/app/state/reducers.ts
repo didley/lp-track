@@ -66,11 +66,17 @@ export const reducers = (state: GlobalState, action: Action) => {
     }
     case "game/reset": {
       return produce(state, (draftState) => {
-        const defaultLp = draftState.gameOpts.lifePoints.default;
+        const defaultLp = draftState.trackerOpts.defaultLp;
         draftState.players.map((player) => {
           player.lp = defaultLp;
           return (player.counters = [0]);
         });
+      });
+    }
+    case "game/setTrackerOpts": {
+      const { trackerOpts } = action;
+      return produce(state, (draftState) => {
+        draftState.trackerOpts = trackerOpts;
       });
     }
     case "player/rotate": {

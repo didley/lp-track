@@ -1,16 +1,15 @@
-import { useGlobalDispatch } from "app/state/context";
-import { useState } from "react";
+import { useGlobalCtx } from "app/state/context";
 import { GameModes } from "../GameModes";
 import { ChevronLeftIcon, SettingsIcon } from "../icons";
 
 export const TitleBarMenu = () => {
-  const dispatch = useGlobalDispatch();
-  const [settingsVisible, setSettingsVisible] = useState(false);
+  const [state, dispatch] = useGlobalCtx();
+  const { titleBar } = state;
   return (
     <>
       <SettingsIcon
         className="w-8 mx-8"
-        onClick={() => setSettingsVisible(true)}
+        onClick={() => dispatch({ type: "menu/settingsOpen" })}
       />
 
       <button
@@ -20,7 +19,7 @@ export const TitleBarMenu = () => {
         <ChevronLeftIcon className="w-4 h-4" /> Menu
       </button>
 
-      {settingsVisible && (
+      {titleBar.settingsOpen && (
         <div className="w-screen h-screen z-10 absolute inset-0 text-gray-900">
           <div className="absolute text-left p-4 left-0 right-0 ml-auto mr-auto mt-auto mb-auto inset-0 w-72 z-20 bg-white shadow-lg max-h-56 rounded-2xl text-base overflow-auto sm:text-sm">
             <h6>Game</h6>

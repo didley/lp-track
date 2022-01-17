@@ -24,6 +24,13 @@ export const reducers = (state: GlobalState, action: Action) => {
         }
       });
     }
+    case "lp/set": {
+      return produce(state, (draftState) => {
+        const { playerIndex, value } = action;
+
+        draftState.players[playerIndex].lp = value;
+      });
+    }
     case "counter/increment": {
       return produce(state, (draftState) => {
         if (draftState) {

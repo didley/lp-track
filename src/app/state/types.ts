@@ -51,6 +51,7 @@ export type GlobalState = {
 export type Action =
   | { type: "lp/increment"; playerIndex: number }
   | { type: "lp/decrement"; playerIndex: number }
+  | { type: "lp/set"; playerIndex: number; value: number }
   | { type: "counter/increment"; playerIndex: number; counterIndex: number }
   | { type: "counter/decrement"; playerIndex: number; counterIndex: number }
   | { type: "counter/add"; playerIndex: number }

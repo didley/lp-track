@@ -1,6 +1,6 @@
 # Life Point Tracker (lp-track)
 
-A life point tracking web app for card and board games.
+<b>A life point tracking web app for card and board games, [visit the live app](https://track-lp.didley.dev/)</b>
 
 features
 - LP & match logging saved to local storage
@@ -10,7 +10,7 @@ features
 pre-configured trackers 
 - Yu-Gi-Oh! (YGO)
 - Flesh and Blood (FAB)
-- More coming soon
+- Magic: The Gathering (MTG)
   
 ## Available Scripts
 

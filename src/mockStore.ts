@@ -24,6 +24,22 @@ export const initStore: GlobalState = {
   ],
   gameConfigs: [
     {
+      gameName: "Yu-Gi-Oh!",
+      shortName: "YGO",
+      surrenderAvailable: true,
+      lpChangeType: "numpad",
+      formats: [
+        {
+          formatName: "Master duel",
+          defaultLp: 8000,
+        },
+        {
+          formatName: "Speed duel",
+          defaultLp: 4000,
+        },
+      ],
+    },
+    {
       gameName: "Flesh and Blood",
       shortName: "FaB",
       surrenderAvailable: false,
@@ -40,18 +56,18 @@ export const initStore: GlobalState = {
       ],
     },
     {
-      gameName: "Yu-Gi-Oh!",
-      shortName: "YGO",
-      surrenderAvailable: true,
-      lpChangeType: "numpad",
+      gameName: "Magic: The Gathering",
+      shortName: "MTG",
+      surrenderAvailable: false,
+      lpChangeType: "step",
       formats: [
         {
-          formatName: "Master duel",
-          defaultLp: 8000,
+          formatName: "20lp",
+          defaultLp: 20,
         },
         {
-          formatName: "Speed duel",
-          defaultLp: 4000,
+          formatName: "Commander",
+          defaultLp: 40,
         },
       ],
     },

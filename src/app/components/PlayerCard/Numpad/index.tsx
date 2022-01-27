@@ -54,7 +54,7 @@ export const Numpad = ({ player, playerIndex, hideNumpad }: Props) => {
     <Portal rootId="numpad-root">
       <div className="absolute h-screen w-screen flex">
         <div
-          className="z-20 bg-gray-800 rounded-3xl select-none m-auto"
+          className="z-50 bg-gray-800 rounded-3xl select-none m-auto"
           style={{
             transform: `rotate(${player.cardRotation}deg)`,
           }}

@@ -11,6 +11,9 @@ pre-configured trackers
 - Yu-Gi-Oh! (YGO)
 - Flesh and Blood (FAB)
 - Magic: The Gathering (MTG)
+
+## Demo
+![Demo](demo/lp-track.gif)
   
 ## Available Scripts
 

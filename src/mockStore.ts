@@ -84,7 +84,7 @@ export const initStore: GlobalState = {
     formatName: "Master duel",
     surrenderAvailable: true,
     lpChangeType: "numpad",
-    defaultLp: 80,
+    defaultLp: 8000,
   },
   titleBar: {
     menuOpen: false,
